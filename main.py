@@ -33,7 +33,6 @@ def get_weather(city):
 @bot.event
 async def on_ready():
     print(f'{bot.user} is now online')
-    # Synchronisiere die Slash-Befehle mit Discord
     await bot.tree.sync()
 
 @bot.tree.command(name="weather", description="Shows the current weather")
