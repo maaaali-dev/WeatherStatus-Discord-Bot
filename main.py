@@ -25,7 +25,6 @@ def get_weather(city):
             "feels_like": data["main"]["feels_like"],
             "humidity": data["main"]["humidity"],
             "icon": data["weather"][0]["icon"],
-
         }
         return weather
     else:
@@ -34,6 +33,8 @@ def get_weather(city):
 @bot.event
 async def on_ready():
     print(f'{bot.user} is now online')
+    # Synchronisiere die Slash-Befehle mit Discord
+    await bot.tree.sync()
 
 @bot.tree.command(name="weather", description="Shows the current weather")
 async def weather(interaction: discord.Interaction, city: str):
@@ -48,7 +49,7 @@ async def weather(interaction: discord.Interaction, city: str):
         )
         embed.set_thumbnail(url=icon_url)
         embed.add_field(name="🌡️ Temperature", value=f"{weather_data['temperature']}°C", inline=False)
-        embed.add_field(name="🌡️ Max-Min Temperature",value=f"{weather_data['temp_min']} - {weather_data['temp_max']}°C", inline=False)
+        embed.add_field(name="🌡️ Max-Min Temperature", value=f"{weather_data['temp_min']} - {weather_data['temp_max']}°C", inline=False)
         embed.add_field(name="🌬️ Feels Like", value=f"{weather_data['feels_like']}°C", inline=False)
         embed.add_field(name="💧 Humidity", value=f"{weather_data['humidity']}%", inline=False)
         embed.add_field(name="💨 Wind Speed", value=f"{weather_data['wind_speed']} m/s", inline=False)
