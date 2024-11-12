@@ -52,7 +52,7 @@ async def weather(interaction: discord.Interaction, city: str):
         embed.add_field(name="🌬️ Feels Like", value=f"{weather_data['feels_like']}°C", inline=False)
         embed.add_field(name="💧 Humidity", value=f"{weather_data['humidity']}%", inline=False)
         embed.add_field(name="💨 Wind Speed", value=f"{weather_data['wind_speed']} m/s", inline=False)
-        embed.set_footer(text="Data provided by OpenWeather")
+        embed.set_footer(text="Data provided by OpenWeather | https://github.com/maaaali-dev/WeatherStatus-Discord-Bot")
         await interaction.response.send_message(embed=embed)
     else:
         await interaction.response.send_message("City not found or something went wrong")
